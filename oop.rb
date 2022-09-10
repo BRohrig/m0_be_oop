@@ -50,14 +50,13 @@ class Dragon
         @color = color
         @is_hungry = true
 
-        n = 0
+        @n = 0
 
         def eat
-            n += 1
+            @n += 1
+        if @n >= 4 then @is_hungry = false
         end
-
-        if n >= 4 then @is_hungry = false
-        end
+    end
     end
 end
 
@@ -83,21 +82,28 @@ class Hobbit
     def initialize(name, disposition)
         @name = name
         @disposition = disposition
-        @age = 0
+        @age = 100
         @is_adult = false
         @is_old = false
         if @name == "Frodo" then @has_ring = true else @has_ring = false end
-        i = 0
+        
         def celebrate_birthday
-            i += 1
+            @age += 1
+        if @age >= 33 then @is_adult = true end
+        if @age >= 101 then @is_old = true end
         end
 
-        if i >= 33 then @is_adult = true end
-        if i >= 101 then @is_old = true end
+        def name_change
+            @name = "Frodo"
+            if @name == "Frodo" then @has_ring = true end
+        end
 end
 end
 
-sam = Hobbit.new("sam", "cheerful")
+sam = Hobbit.new("Frodo", "cheerful")
+sam.celebrate_birthday
+p sam
+sam.name_change
 p sam
 
 
